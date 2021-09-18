@@ -38,7 +38,6 @@ function App() {
       setCurrentwordindex(0);
       setCharindex(-1);
       setCharatindex("");
-      return;
     }
     if (status === "waiting") {
       setStatus("started");
@@ -57,7 +56,12 @@ function App() {
     }
   }
   function restart() {
-    setStatus("waiting");
+    setStatus("waiting");setWords(generatewords());
+    setCorrect(0);
+    setIncorrect(0);
+    setCurrentwordindex(0);
+    setCharindex(-1);
+    setCharatindex("");
   }
   function handleKeydown({ keyCode, key }) {
     start();
