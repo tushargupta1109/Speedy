@@ -38,8 +38,9 @@ function App() {
       setCurrentwordindex(0);
       setCharindex(-1);
       setCharatindex("");
+      return;
     }
-    if (status !== "started") {
+    if (status === "waiting") {
       setStatus("started");
       let interval = setInterval(() => {
         setCountdown((prev) => {
@@ -55,8 +56,11 @@ function App() {
       }, 1000);
     }
   }
-
+  function restart() {
+    setStatus("waiting");
+  }
   function handleKeydown({ keyCode, key }) {
+    start();
     if (keyCode === 32) {
       checkmatch();
       setCurrInput("");
@@ -148,9 +152,9 @@ function App() {
       <textarea
         ref={textinput}
         style={{ width: "190vh", marginLeft: "12vh", marginTop: "3vh" }}
-        disabled={status !== "started"}
+        disabled={status === "finished"}
         className="form-control mb-2"
-        placeholder="Press Start and Start typing..."
+        placeholder="Start typing..."
         onKeyDown={handleKeydown}
         value={currInput}
         onChange={(e) => {
@@ -158,16 +162,18 @@ function App() {
         }}
         rows={3}
       />
-      <button
-        className="mt-3"
-        style={{
-          fontSize: "4vh",
-          marginLeft: "100vh",
-        }}
-        onClick={start}
-      >
-        START
-      </button>
+      {status === "finished" && (
+        <button
+          className="mt-3"
+          style={{
+            fontSize: "4vh",
+            marginLeft: "100vh",
+          }}
+          onClick={restart}
+        >
+          Restart
+        </button>
+      )}
       {status === "finished" && (
         <div className="columns" style={{ color: "grey" }}>
           <div className="column has-text-centered">
