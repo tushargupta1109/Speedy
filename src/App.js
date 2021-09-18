@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
-import img from "./Components/a.jpg";
+import img from "./a.jpg";
 import randomwords from "random-words";
 
 function App() {
@@ -121,7 +121,10 @@ function App() {
       >
         Speedy
       </h1>
-      <div className="mt-1 " style={{ color: "white" }}>
+      <div
+        className="mt-3"
+        style={{ color: "white", marginLeft: "12vh", marginRight: "12vh" }}
+      >
         {words.map((word, i) => (
           <span>
             <span key={i}>
@@ -139,13 +142,14 @@ function App() {
           </span>
         ))}
       </div>
-      <h2 style={{ color: "gold", marginTop: "3vh", marginLeft: "2vh" }}>
+      <h2 style={{ color: "gold", marginTop: "3vh", marginLeft: "12vh" }}>
         {countdown}
       </h2>
       <textarea
         ref={textinput}
+        style={{ width: "190vh", marginLeft: "12vh", marginTop: "3vh" }}
         disabled={status !== "started"}
-        className="form-control mb-2 mt-3"
+        className="form-control mb-2"
         placeholder="Press Start and Start typing..."
         onKeyDown={handleKeydown}
         value={currInput}
@@ -155,7 +159,7 @@ function App() {
         rows={3}
       />
       <button
-        className="mt-2"
+        className="mt-3"
         style={{
           fontSize: "4vh",
           marginLeft: "100vh",
