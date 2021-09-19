@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
-import img from "./a.jpg";
+import img from "./b.jpg";
 import randomwords from "random-words";
 
 function App() {
@@ -83,9 +83,9 @@ function App() {
   function checkmatch() {
     const wordtocompare = words[currwordindex];
     const doesmatch = wordtocompare === currInput.trim();
-    console.log(doesmatch);
     if (doesmatch) {
-      setCorrect(correct + 1);
+      const letter=words[currwordindex].length;
+      setCorrect(correct + letter);
     } else {
       setIncorrect(incorrect + 1);
     }
@@ -112,6 +112,34 @@ function App() {
       return "";
     }
   }
+  function check(i, j, ch) {
+    if(currwordindex>i && status !== "finished"){
+      return "white";
+    }
+    if (
+      currwordindex === i &&
+      charindex > j &&
+      charatindex &&
+      status !== "finished"
+    ) {
+      return "white";
+    }
+    if (
+      currwordindex === i &&
+      charindex === j &&
+      charatindex &&
+      status !== "finished"
+    ) {
+      if (charatindex === ch) {
+        return "white";
+      } else {
+        return "";
+      }
+    } else{
+      return "";
+    }
+  }
+  const correct_words=Math.round(correct/4);
 
   return (
     <div
@@ -130,8 +158,8 @@ function App() {
         Speedy
       </h1>
       <div
-        className="mt-3"
-        style={{ color: "white", marginLeft: "12vh", marginRight: "12vh" }}
+        className="mt-2"
+        style={{ color: "grey", marginLeft: "12vh", marginRight: "12vh" }}
       >
         {words.map((word, i) => (
           <span>
@@ -140,7 +168,7 @@ function App() {
                 <span
                   className={getColor(i, j, ch)}
                   key={j}
-                  style={{ fontSize: "4vh" }}
+                  style={{ fontSize: "7mm",color:check(i,j,ch)}}
                 >
                   {ch}
                 </span>
@@ -150,7 +178,7 @@ function App() {
           </span>
         ))}
       </div>
-      <h2 style={{ color: "gold", marginTop: "3vh", marginLeft: "12vh" }}>
+      <h2 style={{ color: "gold", marginTop: "2vh", marginLeft: "12vh" }}>
         {countdown}
       </h2>
       <textarea
@@ -181,15 +209,15 @@ function App() {
       {status === "finished" && (
         <div className="columns" style={{ color: "grey" }}>
           <div className="column has-text-centered">
-            <p className="is-size-5">Words Per Minutes :</p>
+            <p className="is-size-5">Words Per Minute :</p>
             <p className="is-size-1" style={{ color: "gold" }}>
-              {2 * correct}
+              {2 * correct_words}
             </p>
           </div>
           <div className="column has-text-centered">
             <p className="is-size-5">Accuracy :</p>
             <p className="is-size-1" style={{ color: "gold" }}>
-              {Math.round((correct / (correct + incorrect)) * 100)}%
+              {Math.round((correct_words / (correct_words + incorrect)) * 100)}%
             </p>
           </div>
         </div>
