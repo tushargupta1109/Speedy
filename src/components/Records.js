@@ -50,7 +50,8 @@ const Records = () => {
           No Records
         </div>
       ) : (
-        fav?.map((record) => <Recshow record={record} />)
+        fav?.map((record) =>
+        <div className="d-inline-flex p-2"> <Recshow record={record} /></div>)
       )}
     </div>
   );

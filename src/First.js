@@ -216,6 +216,7 @@ const First = () => {
       style={{
         backgroundImage: `url(${img})`,
         backgroundPosition: "center",
+        height:"38rem",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}

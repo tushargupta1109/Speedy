@@ -17,11 +17,11 @@ const Recshow = ({ record }) => {
   };
 
   return (
-    <div style={{ color: "white", marginTop: "2rem",marginBottom:"4rem",marginLeft: "29rem" }}>
-      <Card style={{ width: "20rem", height: "8rem" }}>
+    <div style={{ color: "white", marginTop: "2rem",marginLeft:"2rem" }}>
+      <Card style={{ width: "22rem", height: "13rem" }}>
         <div className="text-center" style={{ marginBottom: "20px" }}>
-          <Card.Title>Speed : {record.obj.Speed}</Card.Title>
-          <Card.Title>Accuracy : {record.obj.Accuracy}</Card.Title>
+          <Card.Title style={{fontSize:"3rem"}}>Speed : {record.obj.Speed}</Card.Title>
+          <Card.Title style={{fontSize:"3rem"}}>Accuracy : {record.obj.Accuracy}</Card.Title>
         </div>
         <Button variant="primary" onClick={() => handledelete()}>
           Delete from Records
