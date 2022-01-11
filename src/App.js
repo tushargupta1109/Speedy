@@ -1,229 +1,25 @@
-import "./App.css";
-import React, { useState, useEffect, useRef } from "react";
-import img from "./b.jpg";
-import randomwords from "random-words";
+import React from "react";
+import First from "./First";
+import Records from "./components/Records";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import firebase from "./firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+const auth = firebase.auth();
 
-function App() {
-  const time = 30;
-  const number_of_words = 50;
-  const [countdown, setCountdown] = useState(time);
-  const [currInput, setCurrInput] = useState("");
-  const [words, setWords] = useState([]);
-  const [charindex, setCharindex] = useState(-1);
-  const [charatindex, setCharatindex] = useState("");
-  const [currwordindex, setCurrentwordindex] = useState(0);
-  const [correct, setCorrect] = useState(0);
-  const [incorrect, setIncorrect] = useState(0);
-  const [status, setStatus] = useState("waiting");
-  const textinput = useRef(null);
-
-  useEffect(() => {
-    if (status === "started") {
-      textinput.current.focus();
-    }
-  }, [status]);
-
-  useEffect(() => {
-    setWords(generatewords());
-  }, []);
-
-  function generatewords() {
-    return new Array(number_of_words).fill(null).map(() => randomwords());
-  }
-  function start() {
-    if (status === "finished") {
-      setWords(generatewords());
-      setCorrect(0);
-      setIncorrect(0);
-      setCurrentwordindex(0);
-      setCharindex(-1);
-      setCharatindex("");
-    }
-    if (status === "waiting") {
-      setStatus("started");
-      let interval = setInterval(() => {
-        setCountdown((prev) => {
-          if (prev === 0) {
-            clearInterval(interval);
-            setStatus("finished");
-            setCurrInput("");
-            return time;
-          } else {
-            return prev - 1;
-          }
-        });
-      }, 1000);
-    }
-  }
-  function restart() {
-    setStatus("waiting");setWords(generatewords());
-    setCorrect(0);
-    setIncorrect(0);
-    setCurrentwordindex(0);
-    setCharindex(-1);
-    setCharatindex("");
-  }
-  function handleKeydown({ keyCode, key }) {
-    start();
-    if (keyCode === 32) {
-      checkmatch();
-      setCurrInput("");
-      setCurrentwordindex(currwordindex + 1);
-      setCharindex(-1);
-    } else if (keyCode === 8) {
-      setCharindex(charindex - 1);
-      setIncorrect(incorrect + 1);
-      setCharatindex("");
-    } else {
-      setCharindex(charindex + 1);
-      setCharatindex(key);
-    }
-  }
-
-  function checkmatch() {
-    const wordtocompare = words[currwordindex];
-    const doesmatch = wordtocompare === currInput.trim();
-    if (doesmatch) {
-      const letter=words[currwordindex].length;
-      setCorrect(correct + letter);
-    } else {
-      setIncorrect(incorrect + 1);
-    }
-  }
-
-  function getColor(i, j, ch) {
-    if (
-      currwordindex === i &&
-      charindex === j &&
-      charatindex &&
-      status !== "finished"
-    ) {
-      if (charatindex === ch) {
-        return "has-background-success";
-      } else {
-        return "has-background-danger";
-      }
-    } else if (
-      currwordindex === i &&
-      charindex >= words[currwordindex].length
-    ) {
-      return "has-background-danger";
-    } else {
-      return "";
-    }
-  }
-  function check(i, j, ch) {
-    if(currwordindex>i && status !== "finished"){
-      return "white";
-    }
-    if (
-      currwordindex === i &&
-      charindex > j &&
-      charatindex &&
-      status !== "finished"
-    ) {
-      return "white";
-    }
-    if (
-      currwordindex === i &&
-      charindex === j &&
-      charatindex &&
-      status !== "finished"
-    ) {
-      if (charatindex === ch) {
-        return "white";
-      } else {
-        return "";
-      }
-    } else{
-      return "";
-    }
-  }
-  const correct_words=Math.round(correct/4);
-
+const App = () => {
+  const [userin] = useAuthState(auth);
   return (
-    <div
-      style={{
-        backgroundImage: `url(${img})`,
-        height: "100vh",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
-      <h1
-        className="text-center"
-        style={{ color: "gold", fontWeight: "bolder" }}
-      >
-        Speedy
-      </h1>
-      <div
-        className="mt-2"
-        style={{ color: "grey", marginLeft: "12vh", marginRight: "12vh" }}
-      >
-        {words.map((word, i) => (
-          <span>
-            <span key={i}>
-              {word.split("").map((ch, j) => (
-                <span
-                  className={getColor(i, j, ch)}
-                  key={j}
-                  style={{ fontSize: "7mm",color:check(i,j,ch)}}
-                >
-                  {ch}
-                </span>
-              ))}
-            </span>
-            <span> </span>
-          </span>
-        ))}
-      </div>
-      <h2 style={{ color: "gold", marginTop: "2vh", marginLeft: "12vh" }}>
-        {countdown}
-      </h2>
-      <textarea
-        ref={textinput}
-        style={{ width: "190vh", marginLeft: "12vh", marginTop: "3vh" }}
-        disabled={status === "finished"}
-        className="form-control mb-2"
-        placeholder="Start typing..."
-        onKeyDown={handleKeydown}
-        value={currInput}
-        onChange={(e) => {
-          setCurrInput(e.target.value);
-        }}
-        rows={3}
-      />
-      {status === "finished" && (
-        <button
-          className="mt-3"
-          style={{
-            fontSize: "4vh",
-            marginLeft: "100vh",
-          }}
-          onClick={restart}
-        >
-          Restart
-        </button>
-      )}
-      {status === "finished" && (
-        <div className="columns" style={{ color: "grey" }}>
-          <div className="column has-text-centered">
-            <p className="is-size-5">Words Per Minute :</p>
-            <p className="is-size-1" style={{ color: "gold" }}>
-              {2 * correct_words}
-            </p>
-          </div>
-          <div className="column has-text-centered">
-            <p className="is-size-5">Accuracy :</p>
-            <p className="is-size-1" style={{ color: "gold" }}>
-              {Math.round((correct_words / (correct_words + incorrect)) * 100)}%
-            </p>
-          </div>
+    <div>
+      <Router>
+        <div>
+          <Switch>
+            <Route path="/" exact component={First} />
+            {userin ? <Route path="/Records" component={Records} /> : ""}
+          </Switch>
         </div>
-      )}
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
