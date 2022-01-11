@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import img from "../b.jpg";
+import img from "./img.jpg";
 import { Link } from "react-router-dom";
-import firebase, { db } from "../firebase";
+import firebase, { db } from "./firebase";
 import Recshow from "./Recshow";
 
 const Records = () => {
@@ -24,6 +24,7 @@ const Records = () => {
     <div
       style={{
         backgroundImage: `url(${img})`,
+        height:"40rem",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",

@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import img from "./b.jpg";
+import img from "./img.jpg";
 import randomwords from "random-words";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {  Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import firebase, { db } from "./firebase";
 const auth = firebase.auth();
 
-const First = () => {
+const Home = () => {
   const [userin] = useAuthState(auth);
   const handleadd = async () => {
     const uid = firebase.auth().currentUser.uid;
@@ -216,7 +216,7 @@ const First = () => {
       style={{
         backgroundImage: `url(${img})`,
         backgroundPosition: "center",
-        height:"38rem",
+        height: "38rem",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
@@ -242,7 +242,11 @@ const First = () => {
               </h1>
             </Link>
             <h1
-              style={{ marginLeft: "5em", color: "wheat", fontWeight: "bolder" }}
+              style={{
+                marginLeft: "5em",
+                color: "wheat",
+                fontWeight: "bolder",
+              }}
               onClick={() => out()}
             >
               Logout
@@ -250,7 +254,7 @@ const First = () => {
           </>
         ) : (
           <h1
-            style={{ marginLeft: "13em", color: "gold", fontWeight: "bolder" }}
+            style={{ marginLeft: "13em", color: "wheat", fontWeight: "bolder" }}
             onClick={() => googlelogin()}
           >
             Login
@@ -294,35 +298,55 @@ const First = () => {
         }}
         rows={3}
       />
-      <div style={{ display: "flex" }}>
-        {status === "finished" && (
-           <Button
-           variant="outline-primary"
-            className="mt-3"
-            style={{
-              fontSize: "4vh",
-              marginLeft: "20em",
-            }}
-            onClick={restart}
-          >
-            Restart
-            </Button>
-        )}
+      {userin ? (
+        <>
+          <div style={{ display: "flex" }}>
+            {status === "finished" && (
+              <Button
+                variant="outline-primary"
+                className="mt-3"
+                style={{
+                  fontSize: "4vh",
+                  marginLeft: "20em",
+                }}
+                onClick={restart}
+              >
+                Restart
+              </Button>
+            )}
 
-        {status === "finished" && (
-          <Button
-          variant="outline-primary"
-            className="mt-3"
-            style={{
-              fontSize: "4vh",
-              marginLeft: "10vh",
-            }}
-            onClick={() => handleadd()}
-          >
-            Add to Records
-          </Button>
-        )}
-      </div>
+            {status === "finished" && (
+              <Button
+                variant="outline-primary"
+                className="mt-3"
+                style={{
+                  fontSize: "4vh",
+                  marginLeft: "10vh",
+                }}
+                onClick={() => handleadd()}
+              >
+                Add to Records
+              </Button>
+            )}
+          </div>
+        </>
+      ) : (
+        <>
+          {status === "finished" && (
+            <Button
+              variant="outline-primary"
+              className="mt-3"
+              style={{
+                fontSize: "4vh",
+                marginLeft: "25em",
+              }}
+              onClick={restart}
+            >
+              Restart
+            </Button>
+          )}
+        </>
+      )}
       {status === "finished" && (
         <div className="columns" style={{ color: "grey" }}>
           <div className="column has-text-centered">
@@ -343,4 +367,4 @@ const First = () => {
   );
 };
 
-export default First;
+export default Home;

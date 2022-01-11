@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button } from "react-bootstrap";
-import firebase, { db } from "../firebase";
+import firebase, { db } from "./firebase";
 const auth = firebase.auth();
 
 const Recshow = ({ record }) => {

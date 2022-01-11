@@ -1,8 +1,8 @@
 import React from "react";
-import First from "./First";
+import Home from "./components/Home";
 import Records from "./components/Records";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import firebase from "./firebase";
+import firebase from "./components/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 const auth = firebase.auth();
 
@@ -13,7 +13,7 @@ const App = () => {
       <Router>
         <div>
           <Switch>
-            <Route path="/" exact component={First} />
+            <Route path="/" exact component={Home} />
             {userin ? <Route path="/Records" component={Records} /> : ""}
           </Switch>
         </div>
