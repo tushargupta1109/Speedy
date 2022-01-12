@@ -209,7 +209,7 @@ const Home = () => {
       return "";
     }
   }
-  const correct_words = Math.round(correct / 4);
+  const correct_words = Math.round(2*correct / 4);
 
   return (
     <div
@@ -352,7 +352,7 @@ const Home = () => {
           <div className="column has-text-centered">
             <p className="is-size-5">Words Per Minute :</p>
             <p className="is-size-1" style={{ color: "wheat" }}>
-              {2 * correct_words}
+              {correct_words}
             </p>
           </div>
           <div className="column has-text-centered">
