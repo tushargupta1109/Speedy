@@ -13,8 +13,8 @@ const App = () => {
       <Router>
         <div>
           <Routes>
-            <Route path="/" exact component={Home} />
-            {userin ? <Route path="/Records" component={Records} /> : ""}
+            <Route exact path="/" element={<Home/>} />
+            {userin ? <Route path="/Records" element={<Records/>} /> : ""}
           </Routes>
         </div>
       </Router>
