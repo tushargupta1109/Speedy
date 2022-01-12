@@ -16,7 +16,7 @@ const Home = () => {
       return;
     }
     const obj = {
-      Speed: 2 * correct_words,
+      Speed: correct_words,
       Accuracy: Math.round((correct_words / (correct_words + incorrect)) * 100),
     };
 
