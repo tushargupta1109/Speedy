@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./components/Home";
-import Records from "./components/Records";
+import Home from "./components/Home/Home";
+import Records from "./components/Records/records";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import firebase from "./components/firebase";
+import firebase from "./components/Firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 const auth = firebase.auth();
 

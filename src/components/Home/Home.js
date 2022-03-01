@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import img from "./img.jpg";
 import randomwords from "random-words";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import firebase, { db } from "./firebase";
-const auth = firebase.auth();
+import firebase, { db } from "../Firebase/firebase";
+import "./styles.css";
 
 const Home = () => {
+  const auth = firebase.auth();
   const [userin] = useAuthState(auth);
+
   const handleadd = async () => {
     const uid = firebase.auth().currentUser.uid;
     if (uid === "") {
@@ -212,21 +213,9 @@ const Home = () => {
   const correct_words = Math.round((2 * correct) / 4);
 
   return (
-    <div
-      style={{
-        background: "#3b3c36",
-        backgroundPosition: "center",
-        height: "110vh",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
+    <div className="cover">
       <div style={{ display: "flex" }}>
-        <h1
-          style={{ marginLeft: "35vh", color: "wheat", fontWeight: "bolder" }}
-        >
-          Speedy
-        </h1>
+        <h1 className="head">Speedy</h1>
         {userin ? (
           <>
             <Link
@@ -243,24 +232,34 @@ const Home = () => {
                 Records
               </h1>
             </Link>
-            <h1
+            <button
               style={{
                 marginLeft: "35vh",
                 color: "wheat",
                 fontWeight: "bolder",
+                fontSize: "6vh",
+                backgroundColor: "#3b3c36",
+                borderColor: "#3b3c36",
               }}
               onClick={() => out()}
             >
               Logout
-            </h1>
+            </button>
           </>
         ) : (
-          <h1
-            style={{ marginLeft: "50vh", color: "wheat", fontWeight: "bolder" }}
+          <button
+            style={{
+              marginLeft: "100vh",
+              color: "wheat",
+              fontWeight: "bolder",
+              fontSize: "6vh",
+              backgroundColor: "#3b3c36",
+              borderColor: "#3b3c36",
+            }}
             onClick={() => googlelogin()}
           >
             Login
-          </h1>
+          </button>
         )}
       </div>
       <div
@@ -340,7 +339,7 @@ const Home = () => {
               className="mt-3"
               style={{
                 fontSize: "4vh",
-                marginLeft: "25em",
+                marginLeft: "100vh",
               }}
               onClick={restart}
             >
