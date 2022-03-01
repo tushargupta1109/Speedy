@@ -11,3 +11,55 @@
   color: wheat;
   font-weight: bolder;
 }
+
+.btn1 {
+  margin-left: 35vh;
+  color: wheat;
+  font-weight: bolder;
+  font-size: 6vh;
+  background-color: #3b3c36;
+  border-color: #3b3c36;
+}
+
+.btn2 {
+  margin-left: 100vh;
+  color: wheat;
+  font-weight: bolder;
+  font-size: 6vh;
+  background-color: #3b3c36;
+  border-color: #3b3c36;
+}
+
+.mt-2 {
+  color: grey;
+  margin-left: 12vh;
+  margin-right: 12vh;
+}
+
+.countdown {
+  color: wheat;
+  margin-top: 2vh;
+  margin-left: 12vh;
+}
+
+.form-control {
+  width: 190vh;
+  margin-left: 12vh;
+  margin-top: 3vh;
+  margin-bottom: 4vh;
+}
+
+.restart_btn1 {
+  font-size: 4vh;
+  margin-left: 80vh;
+}
+
+.restart_btn2 {
+  font-size: 4vh;
+  margin-left: 100vh;
+}
+
+.add_btn {
+  font-size: 4vh;
+  margin-left: 10vh;
+}

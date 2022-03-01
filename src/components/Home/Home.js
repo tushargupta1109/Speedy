@@ -222,50 +222,19 @@ const Home = () => {
               to="/Records"
               style={{ color: "white", textDecoration: "none" }}
             >
-              <h1
-                style={{
-                  marginLeft: "35vh",
-                  color: "wheat",
-                  fontWeight: "bolder",
-                }}
-              >
-                Records
-              </h1>
+              <h1 className="head">Records</h1>
             </Link>
-            <button
-              style={{
-                marginLeft: "35vh",
-                color: "wheat",
-                fontWeight: "bolder",
-                fontSize: "6vh",
-                backgroundColor: "#3b3c36",
-                borderColor: "#3b3c36",
-              }}
-              onClick={() => out()}
-            >
+            <button className="btn1" onClick={() => out()}>
               Logout
             </button>
           </>
         ) : (
-          <button
-            style={{
-              marginLeft: "100vh",
-              color: "wheat",
-              fontWeight: "bolder",
-              fontSize: "6vh",
-              backgroundColor: "#3b3c36",
-              borderColor: "#3b3c36",
-            }}
-            onClick={() => googlelogin()}
-          >
+          <button className="btn2" onClick={() => googlelogin()}>
             Login
           </button>
         )}
       </div>
-      <div
-        className="mt-2"
-        style={{ color: "grey", marginLeft: "12vh", marginRight: "12vh" }}
-      >
+      <div className="mt-2">
         {words.map((word, i) => (
           <span>
             <span key={i}>
@@ -283,14 +252,11 @@ const Home = () => {
           </span>
         ))}
       </div>
-      <h2 style={{ color: "wheat", marginTop: "2vh", marginLeft: "12vh" }}>
-        {countdown}
-      </h2>
+      <h2 className="countdown">{countdown}</h2>
       <textarea
         ref={textinput}
-        style={{ width: "190vh", marginLeft: "12vh", marginTop: "3vh" }}
         disabled={status === "finished"}
-        className="form-control mb-2"
+        className="form-control"
         placeholder="Start typing..."
         onKeyDown={handleKeydown}
         value={currInput}
@@ -305,11 +271,7 @@ const Home = () => {
             {status === "finished" && (
               <Button
                 variant="outline-primary"
-                className="mt-3"
-                style={{
-                  fontSize: "4vh",
-                  marginLeft: "80vh",
-                }}
+                className="restart_btn1"
                 onClick={restart}
               >
                 Restart
@@ -319,11 +281,7 @@ const Home = () => {
             {status === "finished" && (
               <Button
                 variant="outline-primary"
-                className="mt-3"
-                style={{
-                  fontSize: "4vh",
-                  marginLeft: "10vh",
-                }}
+                className="add_btn"
                 onClick={() => handleadd()}
               >
                 Add to Records
@@ -336,11 +294,7 @@ const Home = () => {
           {status === "finished" && (
             <Button
               variant="outline-primary"
-              className="mt-3"
-              style={{
-                fontSize: "4vh",
-                marginLeft: "100vh",
-              }}
+              className="restart_btn2"
               onClick={restart}
             >
               Restart
