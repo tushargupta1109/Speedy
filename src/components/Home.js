@@ -209,20 +209,22 @@ const Home = () => {
       return "";
     }
   }
-  const correct_words = Math.round(2*correct / 4);
+  const correct_words = Math.round((2 * correct) / 4);
 
   return (
     <div
       style={{
-        backgroundImage: `url(${img})`,
+        background: "#3b3c36",
         backgroundPosition: "center",
-        height: "38rem",
+        height: "110vh",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
       <div style={{ display: "flex" }}>
-        <h1 style={{ marginLeft: "5em", color: "wheat", fontWeight: "bolder" }}>
+        <h1
+          style={{ marginLeft: "35vh", color: "wheat", fontWeight: "bolder" }}
+        >
           Speedy
         </h1>
         {userin ? (
@@ -233,7 +235,7 @@ const Home = () => {
             >
               <h1
                 style={{
-                  marginLeft: "5em",
+                  marginLeft: "35vh",
                   color: "wheat",
                   fontWeight: "bolder",
                 }}
@@ -243,7 +245,7 @@ const Home = () => {
             </Link>
             <h1
               style={{
-                marginLeft: "5em",
+                marginLeft: "35vh",
                 color: "wheat",
                 fontWeight: "bolder",
               }}
@@ -254,7 +256,7 @@ const Home = () => {
           </>
         ) : (
           <h1
-            style={{ marginLeft: "13em", color: "wheat", fontWeight: "bolder" }}
+            style={{ marginLeft: "50vh", color: "wheat", fontWeight: "bolder" }}
             onClick={() => googlelogin()}
           >
             Login
@@ -272,7 +274,7 @@ const Home = () => {
                 <span
                   className={getColor(i, j, ch)}
                   key={j}
-                  style={{ fontSize: "7mm", color: check(i, j, ch) }}
+                  style={{ fontSize: "4.8vh", color: check(i, j, ch) }}
                 >
                   {ch}
                 </span>
@@ -307,7 +309,7 @@ const Home = () => {
                 className="mt-3"
                 style={{
                   fontSize: "4vh",
-                  marginLeft: "20em",
+                  marginLeft: "80vh",
                 }}
                 onClick={restart}
               >
