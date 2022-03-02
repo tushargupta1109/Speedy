@@ -30,6 +30,14 @@
   border-color: #3b3c36;
 }
 
+.btn2:hover {
+  box-shadow: 0 8px 16px 0 rgba(102, 100, 100, 0.3);
+}
+
+.btn1:hover {
+  box-shadow: 0 8px 16px 0 rgba(102, 100, 100, 0.3);
+}
+
 .mt-2 {
   color: grey;
   margin-left: 12vh;
@@ -52,14 +60,38 @@
 .restart_btn1 {
   font-size: 4vh;
   margin-left: 80vh;
+  border-color: wheat;
+  color: wheat;
+  border-radius: 0.7vh;
+  background-color: #3b3c36;
 }
 
 .restart_btn2 {
   font-size: 4vh;
   margin-left: 100vh;
+  border-color: wheat;
+  color: wheat;
+  border-radius: 0.7vh;
+  background-color: #3b3c36;
 }
 
 .add_btn {
   font-size: 4vh;
   margin-left: 10vh;
+  border-color: wheat;
+  color: wheat;
+  border-radius: 0.7vh;
+  background-color: #3b3c36;
+}
+
+.add_btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(190, 185, 185, 0.3);
+}
+
+.restart_btn1:hover {
+  box-shadow: 0 8px 16px 0 rgba(190, 185, 185, 0.3);
+}
+
+.restart_btn2:hover {
+  box-shadow: 0 8px 16px 0 rgba(190, 185, 185, 0.3);
 }

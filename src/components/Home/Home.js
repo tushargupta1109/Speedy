@@ -281,7 +281,7 @@ const Home = () => {
           <div style={{ display: "flex" }}>
             {status === "finished" && (
               <Button
-                variant="outline-primary"
+                variant="outline-light"
                 className="restart_btn1"
                 onClick={restart}
               >
@@ -291,7 +291,7 @@ const Home = () => {
 
             {status === "finished" && (
               <Button
-                variant="outline-primary"
+                 variant="outline-light"
                 className="add_btn"
                 onClick={() => handleadd()}
               >
@@ -304,7 +304,7 @@ const Home = () => {
         <>
           {status === "finished" && (
             <Button
-              variant="outline-primary"
+              variant="outline-light"
               className="restart_btn2"
               onClick={restart}
             >
