@@ -1,8 +1,8 @@
 .cover {
   background: #3b3c36;
   background-position: center;
-  height: 110vh;
-  background-repeat: no-repeat;
+  min-height: 110vh;
+  min-width: 200vh;
   background-size: cover;
 }
 

@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Recshow = ({ record }) => {
   const auth = firebase.auth();
-  
+
   const handledelete = async () => {
     const uid = firebase.auth().currentUser.uid;
     const data = await db.collection("users").doc(uid).get();
