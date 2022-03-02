@@ -2,6 +2,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase, { db } from "../Firebase/firebase";
 import "./styles.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Recshow = ({ record }) => {
   const auth = firebase.auth();
@@ -17,7 +19,10 @@ const Recshow = ({ record }) => {
       );
     });
     db.collection("users").doc(uid).set({ fav: filteredfav });
-    alert("removed successfully ,refresh the page");
+    toast.success("Removed successfully, refresh the page!", {
+      position: "top-center",
+      autoClose: 2000,
+    });
   };
 
   return (
@@ -38,6 +43,7 @@ const Recshow = ({ record }) => {
       <button className="btns" onClick={handledelete}>
         Remove
       </button>
+      <ToastContainer />
     </div>
   );
 };

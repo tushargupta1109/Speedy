@@ -6,6 +6,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import firebase, { db } from "../Firebase/firebase";
 import "./styles.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const auth = firebase.auth();
@@ -37,14 +39,23 @@ const Home = () => {
         if (flag === true) {
           fav.push({ obj });
           db.collection("users").doc(uid).set({ fav }, { merge: true });
-          alert("added to Records");
+          toast.success("Added to records!", {
+            position: "top-center",
+            autoClose: 2000,
+          });
         } else {
-          alert("already in Records");
+          toast.error("Already in records!", {
+            position: "top-center",
+            autoClose: 2000,
+          });
         }
       } else {
         let fav = [{ obj }];
         db.collection("users").doc(uid).set({ fav });
-        alert("added to Records");
+        toast.success("Added to records!", {
+          position: "top-center",
+          autoClose: 2000,
+        });
       }
     }
   };
@@ -318,6 +329,7 @@ const Home = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };
