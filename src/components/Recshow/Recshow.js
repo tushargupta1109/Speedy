@@ -19,7 +19,7 @@ const Recshow = ({ record }) => {
       );
     });
     db.collection("users").doc(uid).set({ fav: filteredfav });
-    toast.success("Removed successfully!", {
+    toast.success("Removed Successfully!", {
       position: "top-center",
       autoClose: 2000,
     });
