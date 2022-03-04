@@ -19,7 +19,7 @@ const Records = () => {
         });
     }
     fetchf();
-  }, []);
+  }, [fav]);
   
   return (
     <div className="body">
