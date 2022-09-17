@@ -1,97 +1,50 @@
 .cover {
   background: #3b3c36;
   background-position: center;
-  min-height: 110vh;
-  min-width: 200vh;
+  height: 100vh;
+  width:100vw;
   background-size: cover;
 }
 
-.head {
-  margin-left: 35vh;
+.heading{
   color: wheat;
-  font-weight: bolder;
+  font-size: 30px;
 }
 
-.btn1 {
-  margin-left: 35vh;
-  color: wheat;
-  font-weight: bolder;
-  font-size: 6vh;
-  background-color: #3b3c36;
-  border-color: #3b3c36;
+.icon img,svg{
+  vertical-align: baseline;
+  cursor: pointer;
+  font-size: 20px;
 }
 
-.btn2 {
-  margin-left: 100vh;
-  color: wheat;
-  font-weight: bolder;
-  font-size: 6vh;
-  background-color: #3b3c36;
-  border-color: #3b3c36;
-}
-
-.btn2:hover {
-  box-shadow: 0 8px 16px 0 rgba(102, 100, 100, 0.3);
-}
-
-.btn1:hover {
-  box-shadow: 0 8px 16px 0 rgba(102, 100, 100, 0.3);
-}
-
-.mt-2 {
+.wordarea {
   color: grey;
-  margin-left: 12vh;
-  margin-right: 12vh;
 }
 
 .countdown {
   color: wheat;
-  margin-top: 2vh;
-  margin-left: 12vh;
+  font-size: 2vw;
 }
 
 .form-control {
-  width: 190vh;
-  margin-left: 12vh;
-  margin-top: 3vh;
-  margin-bottom: 4vh;
+  width: 90vw;
 }
 
-.restart_btn1 {
-  font-size: 4vh;
-  margin-left: 80vh;
-  border-color: wheat;
+.button {
+  font-size: 18px;
+  border:1px solid wheat;
   color: wheat;
-  border-radius: 0.7vh;
   background-color: #3b3c36;
 }
 
-.restart_btn2 {
-  font-size: 4vh;
-  margin-left: 100vh;
-  border-color: wheat;
+.result{
+  color: grey;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.answer{
   color: wheat;
-  border-radius: 0.7vh;
-  background-color: #3b3c36;
-}
-
-.add_btn {
-  font-size: 4vh;
-  margin-left: 10vh;
-  border-color: wheat;
-  color: wheat;
-  border-radius: 0.7vh;
-  background-color: #3b3c36;
-}
-
-.add_btn:hover {
-  box-shadow: 0 8px 16px 0 rgba(190, 185, 185, 0.3);
-}
-
-.restart_btn1:hover {
-  box-shadow: 0 8px 16px 0 rgba(190, 185, 185, 0.3);
-}
-
-.restart_btn2:hover {
-  box-shadow: 0 8px 16px 0 rgba(190, 185, 185, 0.3);
+  font-size: 22px;
+  font-weight: 500;
 }

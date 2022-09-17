@@ -1,17 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import randomwords from "random-words";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "react-bootstrap";
+import { Button } from "antd";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import firebase, { db } from "../Firebase/firebase";
 import "./styles.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LoginOutlined } from "@ant-design/icons";
+import { FolderOpenFilled } from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 
 const Home = () => {
   const auth = firebase.auth();
   const [userin] = useAuthState(auth);
+  const time = 30;
+  const number_of_words = 50;
+  const [countdown, setCountdown] = useState(time);
+  const [currInput, setCurrInput] = useState("");
+  const [words, setWords] = useState([]);
+  const [charindex, setCharindex] = useState(-1);
+  const [charatindex, setCharatindex] = useState("");
+  const [currwordindex, setCurrentwordindex] = useState(0);
+  const [correct, setCorrect] = useState(0);
+  const [incorrect, setIncorrect] = useState(0);
+  const [status, setStatus] = useState("waiting");
+  const textinput = useRef(null);
 
   const handleadd = async () => {
     const uid = firebase.auth().currentUser.uid;
@@ -84,19 +99,6 @@ const Home = () => {
         console.log(error);
       });
   };
-
-  const time = 30;
-  const number_of_words = 50;
-  const [countdown, setCountdown] = useState(time);
-  const [currInput, setCurrInput] = useState("");
-  const [words, setWords] = useState([]);
-  const [charindex, setCharindex] = useState(-1);
-  const [charatindex, setCharatindex] = useState("");
-  const [currwordindex, setCurrentwordindex] = useState(0);
-  const [correct, setCorrect] = useState(0);
-  const [incorrect, setIncorrect] = useState(0);
-  const [status, setStatus] = useState("waiting");
-  const textinput = useRef(null);
 
   useEffect(() => {
     if (status === "started") {
@@ -225,27 +227,37 @@ const Home = () => {
 
   return (
     <div className="cover">
-      <div style={{ display: "flex" }}>
-        <h1 className="head">Speedy</h1>
+      <div className="text-center py-2 heading">
+        <span className="pr-3 pl-1">Speedy</span>
         {userin ? (
           <>
             <Link
               to="/Records"
-              style={{ color: "white", textDecoration: "none" }}
+              style={{
+                color: "wheat",
+                textDecoration: "none",
+              }}
             >
-              <h1 className="head">Records</h1>
+              <span className="icon px-4">
+                <FolderOpenFilled />
+              </span>
             </Link>
-            <button className="btn1" onClick={() => out()}>
-              Logout
-            </button>
+            <span className="icon px-4" onClick={() => out()}>
+              <LogoutOutlined />
+            </span>
           </>
         ) : (
-          <button className="btn2" onClick={() => googlelogin()}>
-            Login
-          </button>
+          <>
+            <span className="icon px-4" onClick={() => googlelogin()}>
+              <LoginOutlined />
+            </span>
+          </>
         )}
       </div>
-      <div className="mt-2">
+      <div
+        className="wordarea py-1"
+        style={{ paddingLeft: "3.5vw", paddingRight: "3.5vw" }}
+      >
         {words.map((word, i) => (
           <span>
             <span key={i}>
@@ -253,7 +265,7 @@ const Home = () => {
                 <span
                   className={getColor(i, j, ch)}
                   key={j}
-                  style={{ fontSize: "4.8vh", color: check(i, j, ch) }}
+                  style={{ fontSize: "2.2vw", color: check(i, j, ch) }}
                 >
                   {ch}
                 </span>
@@ -262,72 +274,82 @@ const Home = () => {
             <span> </span>
           </span>
         ))}
+        <hr style={{ color: "white" }} />
       </div>
-      <h2 className="countdown">{countdown}</h2>
-      <textarea
-        ref={textinput}
-        disabled={status === "finished"}
-        className="form-control"
-        placeholder="Start typing..."
-        onKeyDown={handleKeydown}
-        value={currInput}
-        onChange={(e) => {
-          setCurrInput(e.target.value);
-        }}
-        rows={3}
-      />
+      <span
+        className="countdown"
+        style={{ paddingLeft: "3.5vw", paddingRight: "3.5vw" }}
+      >
+        {countdown}
+      </span>
+      <div
+        className="py-3"
+        style={{ paddingLeft: "3.5vw", paddingRight: "3.5vw" }}
+      >
+        <textarea
+          ref={textinput}
+          disabled={status === "finished"}
+          className="form-control"
+          placeholder="Start typing..."
+          onKeyDown={handleKeydown}
+          value={currInput}
+          onChange={(e) => {
+            setCurrInput(e.target.value);
+          }}
+          rows={3}
+        />
+      </div>
       {userin ? (
         <>
-          <div style={{ display: "flex" }}>
-            {status === "finished" && (
-              <Button
-                variant="outline-light"
-                className="restart_btn1"
-                onClick={restart}
-              >
-                Restart
-              </Button>
-            )}
-
-            {status === "finished" && (
-              <Button
-                 variant="outline-light"
-                className="add_btn"
-                onClick={() => handleadd()}
-              >
-                Add to Records
-              </Button>
-            )}
+          <div
+            className="py-2"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <span className="px-2">
+              {status === "finished" && (
+                <Button className="button" onClick={restart}>
+                  Restart
+                </Button>
+              )}
+            </span>
+            <span className="px-2">
+              {status === "finished" && (
+                <Button className="button" onClick={() => handleadd()}>
+                  Add to Records
+                </Button>
+              )}
+            </span>
           </div>
         </>
       ) : (
         <>
-          {status === "finished" && (
-            <Button
-              variant="outline-light"
-              className="restart_btn2"
-              onClick={restart}
-            >
-              Restart
-            </Button>
-          )}
+          <div className="text-center">
+            {status === "finished" && (
+              <Button className="button" onClick={restart}>
+                Restart
+              </Button>
+            )}
+          </div>
         </>
       )}
       {status === "finished" && (
-        <div className="columns" style={{ color: "grey" }}>
-          <div className="column has-text-centered">
-            <p className="is-size-5">Words Per Minute :</p>
-            <p className="is-size-1" style={{ color: "wheat" }}>
-              {correct_words}
-            </p>
+        <>
+          <div className="row text-center">
+            <div className="col-6">
+              <div className="result">Words Per Minute :</div>
+              <div className="answer">{correct_words}</div>
+            </div>
+            <div className="col-6">
+              <div className="result">Accuracy :</div>
+              <div className="answer">
+                {Math.round(
+                  (correct_words / (correct_words + incorrect)) * 100
+                )}
+                %
+              </div>
+            </div>
           </div>
-          <div className="column has-text-centered">
-            <p className="is-size-5">Accuracy :</p>
-            <p className="is-size-1" style={{ color: "wheat" }}>
-              {Math.round((correct_words / (correct_words + incorrect)) * 100)}%
-            </p>
-          </div>
-        </div>
+        </>
       )}
       <ToastContainer />
     </div>
