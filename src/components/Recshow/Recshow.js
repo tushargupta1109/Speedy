@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import firebase, { db } from "../Firebase/firebase";
 import "./styles.css";
+import { Button } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,22 +28,21 @@ const Recshow = ({ record }) => {
 
   return (
     <div className="card">
-      <div className="card-body">
-        <ul className="lists">
-          <li>
-            <span className="list-items">Speed: </span>
-            {record.obj.Speed}
-          </li>
-          <li>
-            {" "}
-            <span className="list-items">Accuracy: </span>
-            {record.obj.Accuracy}
-          </li>
-        </ul>
+      <div className="card-body px-2 py-2">
+        <div className="row">
+          <div className="list1 text-center col-6">Speed:</div>
+          <div className="list2 text-center col-6">{record.obj.Speed}</div>
+        </div>
+        <div className="row">
+          <div className="list1 text-center col-6">Accuracy:</div>
+          <div className="list2 text-center col-6">{record.obj.Accuracy}</div>
+        </div>
       </div>
-      <button className="btns" onClick={handledelete}>
-        Remove
-      </button>
+      <div className="text-center py-2">
+        <Button className="btn" onClick={handledelete}>
+          Remove
+        </Button>
+      </div>
       <ToastContainer />
     </div>
   );
