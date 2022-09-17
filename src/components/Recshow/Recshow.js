@@ -7,15 +7,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Recshow = ({ record }) => {
-  const auth = firebase.auth();
-
   const handledelete = async () => {
     const uid = firebase.auth().currentUser.uid;
     const data = await db.collection("users").doc(uid).get();
     let fav = await data.data().fav;
     const filteredfav = fav.filter((value) => {
       return (
-        value.obj.Speed !== record.obj.Speed &&
+        value.obj.Speed !== record.obj.Speed ||
         value.obj.Accuracy !== record.obj.Accuracy
       );
     });
