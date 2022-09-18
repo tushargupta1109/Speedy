@@ -1,5 +1,5 @@
 .body {
-  background: #3b3c36;
+  background-color: #3b3c36;
   background-position: center;
   height: 100vh;
   width: 100vw;
@@ -14,4 +14,17 @@
 
 .row{
   --bs-gutter-x:0;
+}
+
+.icon img,svg{
+  vertical-align: baseline;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.records{
+  color: wheat;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
 }

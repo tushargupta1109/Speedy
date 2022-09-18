@@ -6,7 +6,7 @@ import { Button } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Recshow = ({ record }) => {
+const Recshow = ({ fetchf, record }) => {
   const handledelete = async () => {
     const uid = firebase.auth().currentUser.uid;
     const data = await db.collection("users").doc(uid).get();
@@ -20,8 +20,11 @@ const Recshow = ({ record }) => {
     db.collection("users").doc(uid).set({ fav: filteredfav });
     toast.success("Removed Successfully!", {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 1000,
     });
+    setTimeout(() => {
+      fetchf();
+    }, 2000);
   };
 
   return (
@@ -37,9 +40,9 @@ const Recshow = ({ record }) => {
         </div>
       </div>
       <div className="text-center py-2">
-        <Button className="btn" onClick={handledelete}>
+        <button className="btn" onClick={handledelete}>
           Remove
-        </Button>
+        </button>
       </div>
       <ToastContainer />
     </div>

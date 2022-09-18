@@ -4,6 +4,7 @@ import firebase, { db } from "../Firebase/firebase";
 import Recshow from "../Recshow/Recshow";
 import "./styles.css";
 import { Space, Spin } from "antd";
+import { HomeOutlined } from "@ant-design/icons";
 
 const Records = () => {
   const uid = firebase.auth().currentUser.uid;
@@ -11,6 +12,8 @@ const Records = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchf = async () => {
+    setIsLoading(true);
+
     db.collection("users")
       .doc(uid)
       .get()
@@ -24,21 +27,29 @@ const Records = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     fetchf();
-  }, [fav]);
+  }, []);
 
   return (
     <div className="body">
-      <div className="py-2 text-center">
-        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-          <span className="heading">Speedy</span>
+      <div className="py-2 records">
+        <span className="heading">My Records</span>
+        <Link
+          to="/"
+          style={{
+            color: "wheat",
+            textDecoration: "none",
+          }}
+        >
+          <span className="icon px-4">
+            <HomeOutlined />
+          </span>
         </Link>
       </div>
       {isLoading ? (
         <div className="mt-5 text-center">
           <Space size="middle">
-            <Spin size="large" />
+            <Spin size="large" style={{ color: "white" }} />
           </Space>
         </div>
       ) : fav.length === 0 ? (
@@ -47,7 +58,7 @@ const Records = () => {
         <div className="row">
           {fav?.map((record) => (
             <div className="col-md-3 p-3">
-              <Recshow record={record} />
+              <Recshow fetchf={fetchf} record={record} />
             </div>
           ))}
         </div>

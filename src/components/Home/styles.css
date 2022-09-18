@@ -1,5 +1,5 @@
 .cover {
-  background: #3b3c36;
+  background-color: #3b3c36;
   background-position: center;
   height: 100vh;
   width:100vw;
@@ -31,10 +31,9 @@
 }
 
 .button {
-  font-size: 18px;
+  font-size: 16px;
   border:1px solid wheat;
-  color: wheat;
-  background-color: #3b3c36;
+  background-color: white;
 }
 
 .result{

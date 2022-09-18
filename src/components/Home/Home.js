@@ -307,16 +307,19 @@ const Home = () => {
           >
             <span className="px-2">
               {status === "finished" && (
-                <Button className="button" onClick={restart}>
+                <button className="button px-2 py-0" onClick={restart}>
                   Restart
-                </Button>
+                </button>
               )}
             </span>
             <span className="px-2">
               {status === "finished" && (
-                <Button className="button" onClick={() => handleadd()}>
+                <button
+                  className="button px-2 py-0"
+                  onClick={() => handleadd()}
+                >
                   Add to Records
-                </Button>
+                </button>
               )}
             </span>
           </div>
@@ -325,9 +328,9 @@ const Home = () => {
         <>
           <div className="text-center">
             {status === "finished" && (
-              <Button className="button" onClick={restart}>
+              <button className="button px-2 py-0" onClick={restart}>
                 Restart
-              </Button>
+              </button>
             )}
           </div>
         </>
